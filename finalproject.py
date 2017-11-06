@@ -20,47 +20,53 @@ item =  {'name':'Cheese Pizza','description':'made with fresh cheese','price':'$
 # DBSession = sessionmaker(bind=engine)
 # session = DBSession()
 
-# 1. /, /restaurants
+# 1. Homepage - /, /restaurants
 @app.route('/')
 @app.route('/restaurants/')
 def showRestaurants():
     return render_template('restaurants.html', restaurants = restaurants)
 
-# 2. /restaurant/new
+# 2. New Restaurant - /restaurant/new
 @app.route('/restaurant/new/')
 def newRestaurant():
     return render_template('newRestaurant.html')
 
-# 3. /restaurant/restaurant_id/edit
+# 3. Edit Restaurant - /restaurant/restaurant_id/edit
 @app.route('/restaurant/<int:restaurant_id>/edit/')
 def editRestaurant(restaurant_id):
-    return "This page will be for editing restaurant %s" % restaurant_id
+    return render_template('editRestaurant.html', item = item)
+    # return "This page will be for editing restaurant %s" % restaurant_id
 
-# 4. /restaurant/restaurant_id/delete
+# 4. Delete Restaurant - /restaurant/restaurant_id/delete
 @app.route('/restaurant/<int:restaurant_id>/delete/')
 def deleteRestaurant(restaurant_id):
-    return "This page will be for deleting restaurant %s" % restaurant_id
+    return render_template('deleteRestaurant.html', item = item)
+    # return "This page will be for deleting restaurant %s" % restaurant_id
 
-# 5. /restaurant/restaurant_id, /restaurant/restaurant_id/menu
+# 5. Restaurant Menu - /restaurant/restaurant_id, /restaurant/restaurant_id/menu
 @app.route('/restaurant/<int:restaurant_id>/')
 @app.route('/restaurant/<int:restaurant_id>/menu/')
 def showMenu(restaurant_id):
-    return "This page is the menu for restaurant %s" % restaurant_id
+    return render_template('menu.html', restaurant = restaurant, item = item)
+    # return "This page is the menu for restaurant %s" % restaurant_id
 
-# 6. /restaurant/restaurant_id/menu/new
+# 6. Restaurant New Menu Item - /restaurant/restaurant_id/menu/new
 @app.route('/restaurant/<int:restaurant_id>/menu/new')
 def newMenuItem(restaurant_id):
-    return "This page is for making a new menu item for restaurant %s" % restaurant_id
+    return render_template('newMenuItem.html')
+    # return "This page is for making a new menu item for restaurant %s" % restaurant_id
 
-# 7. /restaurant/restaurant_id/menu/menu_id/edit
+# 7. Restaurant Edit Menu Item - /restaurant/restaurant_id/menu/menu_id/edit
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit')
 def editMenuItem(restaurant_id, menu_id):
-    return "This page is for editing menu item %s" % menu_id
+    return render_template('editMenuItem.html')
+    # return "This page is for editing menu item %s" % menu_id
 
-# 8. /restaurant/restaurant_id/menu/menu_id/delete
+# 8. Restaurant Delete Menu Item - /restaurant/restaurant_id/menu/menu_id/delete
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete')
 def deleteMenuItem(restaurant_id, menu_id):
-    return "This page is for deleting menu item %s" % menu_id
+    return render_template('deleteMenuItem.html')
+    # return "This page is for deleting menu item %s" % menu_id
 
 
 

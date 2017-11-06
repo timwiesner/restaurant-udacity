@@ -7,8 +7,6 @@
 
 		<h1>{{ restaurant.name }}</h1>
 
-		</br>
-
 		{% with messages = get_flashed_messages() %}
 			{% if messages %}
 				<ul>
@@ -18,7 +16,6 @@
 				</ul>
 			{% endif %}
 		{% endwith %}
-
 
 
 		{% for i in items %}
@@ -37,9 +34,7 @@
 		{% endfor %}
 
 
-
-		<a href = '#'>Create New Item
-		</a>
+		<a href = '#'>Create New Item</a>
 
 	</body>
 </html>
