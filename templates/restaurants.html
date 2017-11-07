@@ -5,19 +5,25 @@
 	</head>
 	<body>
 
-			<ul>
-				{% for restaurant in restaurants %}
-					<li><strong>{{ restaurant.name }}</strong></li>
-				{% else %}
-					<li><em>No Restaurants Found</em></li>
-				{% endfor %}
-			</ul>
+		<h1>Restaurants</h1>
+
+		<a href = "{{url_for('newRestaurant')}}"><p>Create New Restaurant</p></a>
+		<br>
+
+		{% for restaurant in restaurants %}
+			<a href="{{url_for('showMenu', restaurant_id = restaurant.id)}}"><h3>{{restaurant.name}}</h3></a>
+
+			<a href="{{url_for('editRestaurant', restaurant_id = restaurant.id)}}"><p>Edit</p></a>
+
+			<a href="{{url_for('deleteRestaurant', restaurant_id = restaurant.id)}}"><p>Delete</p></a>
+
+			</br>
+		{% endfor %}
 
 
-		<a href = '#'>Create New Restaurant</a>
 
-		</br>
-		</br>
+
+
 
 		{% with messages = get_flashed_messages() %}
 			{% if messages %}
@@ -31,19 +37,6 @@
 
 
 		</br>
-
-<!-- 		{% for i in items %}
-			{{i.name}}
-			</br>
-			{{i.description}}
-			</br>
-			{{i.price}}
-			</br>
-			<a href='#'>Edit</a>
-			<a href='#'>Delete</a>
-			</br>
-			</br>
-		{% endfor %} -->
 
 	</body>
 </html>
